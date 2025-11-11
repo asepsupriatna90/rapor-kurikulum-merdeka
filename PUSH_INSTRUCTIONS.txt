@@ -1,0 +1,81 @@
+# 📋 PETUNJUK FINAL PUSH KE GITHUB
+
+## 🎯 RINGKAS: 3 LANGKAH MUDAH
+
+### 1️⃣ BUAT REPOSITORY (di GitHub.com)
+```
+https://github.com/new
+Repository name: rapor-kurikulum-merdeka
+Pilih: Public
+Klik: Create repository
+```
+
+### 2️⃣ COPY URL YANG DIBERIKAN
+```
+Format: https://github.com/USERNAME/rapor-kurikulum-merdeka.git
+```
+
+### 3️⃣ JALANKAN PERINTAH INI (ganti USERNAME!)
+```powershell
+cd "d:\PROJEK APLIKASI\rapor-kurikulum-merdeka"
+
+git remote add origin https://github.com/USERNAME/rapor-kurikulum-merdeka.git
+git branch -M main
+git push -u origin main
+```
+
+---
+
+## 🔐 LOGIN SAAT DIMINTA
+
+**Username**: Email atau username GitHub Anda  
+**Password**: Personal Access Token (bukannya password biasa!)
+
+### Cara buat PAT (jika perlu):
+1. https://github.com/settings/tokens
+2. Generate new token (Classic)
+3. Scope: `repo` (centang semua)
+4. Copy token → gunakan sebagai password
+
+---
+
+## 🌐 SETELAH PUSH BERHASIL
+
+### Aktifkan GitHub Pages:
+1. Buka halaman repository Anda
+2. Settings → Pages
+3. Branch: `main` | Folder: `/ (root)`
+4. Save
+
+### Akses Website:
+```
+https://USERNAME.github.io/rapor-kurikulum-merdeka
+```
+
+---
+
+## ✅ VERIFIKASI
+
+- [ ] Repository ada di GitHub
+- [ ] File ter-push ke main branch
+- [ ] GitHub Pages enabled
+- [ ] Website bisa diakses
+- [ ] Tidak ada error di console
+
+---
+
+## 📚 DOKUMENTASI TERSEDIA
+
+Setelah push, buka GitHub repository Anda dan lihat:
+- **README.md** - Project overview
+- **INSTALLATION.md** - Setup & usage guide
+- **QUICK_START.md** - Quick reference
+- **CONTRIBUTING.md** - Contribution guidelines
+
+---
+
+## 🚀 READY?
+
+Semua sudah prepared! Tinggal push ke GitHub! 
+
+Copy-paste perintah di atas dan jalankan! 💪
