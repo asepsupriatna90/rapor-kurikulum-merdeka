@@ -278,6 +278,20 @@ const UI = {
             });
         }
 
+        // Load Demo Data Button
+        const loadDemoBtn = document.getElementById('load-demo-btn');
+        if (loadDemoBtn) {
+            loadDemoBtn.addEventListener('click', () => {
+                if (confirm('Apakah Anda yakin ingin memuat data sampel? Data lama akan dihapus.')) {
+                    DemoData.generateSampleData(() => {
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
+                    });
+                }
+            });
+        }
+
         // Cetak Rapor
         const cetakKelas = document.getElementById('cetak-kelas');
         const cetakSiswa = document.getElementById('cetak-siswa');
