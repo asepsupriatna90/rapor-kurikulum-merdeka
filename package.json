@@ -1,0 +1,46 @@
+{
+  "name": "rapor-kurikulum-merdeka",
+  "version": "1.0.0",
+  "description": "Aplikasi pembuatan rapor siswa sesuai dengan standar Kurikulum Merdeka (BSKAP). Aplikasi ini berjalan 100% di browser tanpa perlu server backend.",
+  "main": "index.html",
+  "scripts": {
+    "start": "Open index.html in browser",
+    "build": "No build needed - static files only",
+    "deploy": "Push to GitHub Pages"
+  },
+  "keywords": [
+    "rapor",
+    "kurikulum-merdeka",
+    "bskap",
+    "pendidikan",
+    "sekolah",
+    "siswa",
+    "penilaian",
+    "aplikasi-web"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/rapor-kurikulum-merdeka"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.31",
+    "font-awesome": "^6.4.0"
+  },
+  "devDependencies": {},
+  "features": [
+    "Manajemen data sekolah",
+    "Manajemen data guru dan kelas",
+    "Manajemen data siswa",
+    "Input nilai berdasarkan CP/TP",
+    "Input deskripsi capaian kompetensi",
+    "Manajemen ekstrakurikuler",
+    "Generate rapor PDF otomatis",
+    "Export/Import data JSON",
+    "Sinkronisasi data",
+    "Aplikasi offline-first dengan IndexedDB",
+    "Responsif untuk mobile"
+  ]
+}
