@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Rapor Kurikulum Merdeka 2025</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-graduation-cap"></i> Rapor KM 2025</h2>
+            </div>
+            <div class="sidebar-user">
+                <div class="user-info">
+                    <h3 id="user-name">Guru/Wali Kelas</h3>
+                    <p id="user-school">Sekolah</p>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a href="#" data-page="dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#" data-page="sekolah"><i class="fas fa-school"></i> Data Sekolah</a></li>
+                    <li><a href="#" data-page="guru"><i class="fas fa-chalkboard-teacher"></i> Guru</a></li>
+                    <li><a href="#" data-page="kelas"><i class="fas fa-users"></i> Kelas</a></li>
+                    <li><a href="#" data-page="siswa"><i class="fas fa-user-graduate"></i> Siswa</a></li>
+                    <li><a href="#" data-page="mapel"><i class="fas fa-book"></i> Mata Pelajaran</a></li>
+                    <li><a href="#" data-page="cp"><i class="fas fa-bullseye"></i> CP/TP</a></li>
+                    <li><a href="#" data-page="nilai"><i class="fas fa-chart-line"></i> Nilai</a></li>
+                    <li><a href="#" data-page="deskripsi"><i class="fas fa-comment-alt"></i> Deskripsi</a></li>
+                    <li><a href="#" data-page="ekstrakurikuler"><i class="fas fa-running"></i> Ekstrakurikuler</a></li>
+                    <li><a href="#" data-page="cetak"><i class="fas fa-print"></i> Cetak Rapor</a></li>
+                    <li><a href="#" data-page="sinkronisasi"><i class="fas fa-sync-alt"></i> Sinkronisasi</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <h1 id="page-title">Dashboard</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="sync-status" id="sync-status">
+                        <i class="fas fa-circle" id="sync-icon"></i>
+                        <span id="sync-text">Offline</span>
+                    </div>
+                    <div class="user-actions">
+                        <button id="backup-btn" class="btn-icon" title="Backup Data"><i class="fas fa-download"></i></button>
+                        <button id="restore-btn" class="btn-icon" title="Restore Data"><i class="fas fa-upload"></i></button>
+                        <button id="settings-btn" class="btn-icon" title="Pengaturan"><i class="fas fa-cog"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Content -->
+            <div class="page-content" id="page-content">
+                <!-- Dashboard Page -->
+                <div id="dashboard-page" class="page active">
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Data Sekolah</h3>
+                                <p id="sekolah-count">0</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon bg-success">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Guru</h3>
+                                <p id="guru-count">0</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon bg-warning">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Kelas</h3>
+                                <p id="kelas-count">0</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon bg-info">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Siswa</h3>
+                                <p id="siswa-count">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-info">
+                        <div class="info-card">
+                            <h3>Tahun Ajaran</h3>
+                            <p id="tahun-ajaran">2024/2025</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Fase</h3>
+                            <p id="fase-aktif">-</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Semester</h3>
+                            <p id="semester-aktif">-</p>
+                        </div>
+                    </div>
+
+                    <div class="recent-activities">
+                        <h3>Aktivitas Terbaru</h3>
+                        <div class="activity-list" id="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>Selamat datang di Aplikasi Rapor Kurikulum Merdeka 2025</p>
+                                    <span class="activity-time">Baru saja</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Sekolah Page -->
+                <div id="sekolah-page" class="page">
+                    <div class="page-header">
+                        <h2>Data Sekolah</h2>
+                        <button id="add-sekolah-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Data</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="sekolah-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Sekolah</th>
+                                    <th>NPSN</th>
+                                    <th>Alamat</th>
+                                    <th>Kepala Sekolah</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center">Tidak ada data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Guru Page -->
+                <div id="guru-page" class="page">
+                    <div class="page-header">
+                        <h2>Data Guru</h2>
+                        <button id="add-guru-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Guru</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="guru-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIP</th>
+                                    <th>Nama Guru</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Mapel Diampu</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7" class="text-center">Tidak ada data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Kelas Page -->
+                <div id="kelas-page" class="page">
+                    <div class="page-header">
+                        <h2>Data Kelas</h2>
+                        <button id="add-kelas-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Kelas</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="kelas-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Tingkat</th>
+                                    <th>Fase</th>
+                                    <th>Wali Kelas</th>
+                                    <th>Jumlah Siswa</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7" class="text-center">Tidak ada data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Siswa Page -->
+                <div id="siswa-page" class="page">
+                    <div class="page-header">
+                        <h2>Data Siswa</h2>
+                        <button id="add-siswa-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Siswa</button>
+                    </div>
+                    <div class="filter-container">
+                        <div class="form-group">
+                            <label for="filter-kelas">Filter Kelas</label>
+                            <select id="filter-kelas" class="form-control">
+                                <option value="">Semua Kelas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="search-siswa">Cari Siswa</label>
+                            <input type="text" id="search-siswa" class="form-control" placeholder="Nama atau NISN">
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="siswa-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NISN</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Kelas</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center">Tidak ada data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Mata Pelajaran Page -->
+                <div id="mapel-page" class="page">
+                    <div class="page-header">
+                        <h2>Data Mata Pelajaran</h2>
+                        <button id="add-mapel-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Mata Pelajaran</button>
+                    </div>
+                    <div class="filter-container">
+                        <div class="form-group">
+                            <label for="filter-fase-mapel">Filter Fase</label>
+                            <select id="filter-fase-mapel" class="form-control">
+                                <option value="">Semua Fase</option>
+                                <option value="A">Fase A</option>
+                                <option value="B">Fase B</option>
+                                <option value="C">Fase C</option>
+                                <option value="D">Fase D</option>
+                                <option value="E">Fase E</option>
+                                <option value="F">Fase F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="mapel-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Nama Mata Pelajaran</th>
+                                    <th>Fase</th>
+                                    <th>Kelompok</th>
+                                    <th>Jam Pelajaran</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7" class="text-center">Tidak ada data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- CP/TP Page -->
+                <div id="cp-page" class="page">
+                    <div class="page-header">
+                        <h2>Data CP/TP (Capaian Pembelajaran/Tujuan Pembelajaran)</h2>
+                        <button id="add-cp-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah CP/TP</button>
+                    </div>
+                    <div class="filter-container">
+                        <div class="form-group">
+                            <label for="filter-mapel-cp">Filter Mata Pelajaran</label>
+                            <select id="filter-mapel-cp" class="form-control">
+                                <option value="">Semua Mata Pelajaran</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-fase-cp">Filter Fase</label>
+                            <select id="filter-fase-cp" class="form-control">
+                                <option value="">Semua Fase</option>
+                                <option value="A">Fase A</option>
+                                <option value="B">Fase B</option>
+                                <option value="C">Fase C</option>
+                                <option value="D">Fase D</option>
+                                <option value="E">Fase E</option>
+                                <option value="F">Fase F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="cp-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Elemen</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Fase</th>
+                                    <th>Jenis</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7" class="text-center">Tidak ada data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Nilai Page -->
+                <div id="nilai-page" class="page">
+                    <div class="page-header">
+                        <h2>Input Nilai Siswa</h2>
+                    </div>
+                    <div class="filter-container">
+                        <div class="form-group">
+                            <label for="nilai-kelas">Pilih Kelas</label>
+                            <select id="nilai-kelas" class="form-control">
+                                <option value="">-- Pilih Kelas --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nilai-mapel">Pilih Mata Pelajaran</label>
+                            <select id="nilai-mapel" class="form-control">
+                                <option value="">-- Pilih Mata Pelajaran --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nilai-semester">Pilih Semester</label>
+                            <select id="nilai-semester" class="form-control">
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="nilai-input-container" class="nilai-input-container" style="display: none;">
+                        <div class="nilai-header">
+                            <h3>Input Nilai</h3>
+                            <button id="save-nilai-btn" class="btn btn-success"><i class="fas fa-save"></i> Simpan Nilai</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table" id="nilai-table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NISN</th>
+                                        <th>Nama Siswa</th>
+                                        <th class="nilai-cp-header">CP/TP</th>
+                                        <th class="nilai-actions-header">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" class="text-center">Pilih kelas dan mata pelajaran terlebih dahulu</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deskripsi Page -->
+                <div id="deskripsi-page" class="page">
+                    <div class="page-header">
+                        <h2>Deskripsi Capaian Kompetensi</h2>
+                    </div>
+                    <div class="filter-container">
+                        <div class="form-group">
+                            <label for="deskripsi-kelas">Pilih Kelas</label>
+                            <select id="deskripsi-kelas" class="form-control">
+                                <option value="">-- Pilih Kelas --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsi-siswa">Pilih Siswa</label>
+                            <select id="deskripsi-siswa" class="form-control">
+                                <option value="">-- Pilih Siswa --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsi-semester">Pilih Semester</label>
+                            <select id="deskripsi-semester" class="form-control">
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="deskripsi-input-container" class="deskripsi-input-container" style="display: none;">
+                        <div class="deskripsi-header">
+                            <h3>Input Deskripsi</h3>
+                            <button id="generate-deskripsi-btn" class="btn btn-info"><i class="fas fa-magic"></i> Generate Deskripsi Otomatis</button>
+                            <button id="save-deskripsi-btn" class="btn btn-success"><i class="fas fa-save"></i> Simpan Deskripsi</button>
+                        </div>
+                        <div class="deskripsi-content">
+                            <div class="deskripsi-mapel" id="deskripsi-mapel-container">
+                                <h4>Deskripsi per Mata Pelajaran</h4>
+                                <div id="deskripsi-mapel-list">
+                                    <!-- Will be populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ekstrakurikuler Page -->
+                <div id="ekstrakurikuler-page" class="page">
+                    <div class="page-header">
+                        <h2>Data Ekstrakurikuler</h2>
+                        <button id="add-ekstrakurikuler-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Ekstrakurikuler</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="ekstrakurikuler-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Kegiatan</th>
+                                    <th>Jenis</th>
+                                    <th>Pembina</th>
+                                    <th>Deskripsi</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center">Tidak ada data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ekstrakurikuler-siswa">
+                        <h3>Input Nilai Ekstrakurikuler Siswa</h3>
+                        <div class="filter-container">
+                            <div class="form-group">
+                                <label for="ekskul-kelas">Pilih Kelas</label>
+                                <select id="ekskul-kelas" class="form-control">
+                                    <option value="">-- Pilih Kelas --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ekskul-siswa">Pilih Siswa</label>
+                                <select id="ekskul-siswa" class="form-control">
+                                    <option value="">-- Pilih Siswa --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ekskul-semester">Pilih Semester</label>
+                                <select id="ekskul-semester" class="form-control">
+                                    <option value="1">Semester 1</option>
+                                    <option value="2">Semester 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="ekskul-input-container" class="ekskul-input-container" style="display: none;">
+                            <div class="ekskul-header">
+                                <h3>Input Nilai Ekstrakurikuler</h3>
+                                <button id="save-ekskul-btn" class="btn btn-success"><i class="fas fa-save"></i> Simpan Nilai</button>
+                            </div>
+                            <div class="ekskul-content">
+                                <div id="ekskul-list">
+                                    <!-- Will be populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cetak Page -->
+                <div id="cetak-page" class="page">
+                    <div class="page-header">
+                        <h2>Cetak Rapor</h2>
+                    </div>
+                    <div class="filter-container">
+                        <div class="form-group">
+                            <label for="cetak-kelas">Pilih Kelas</label>
+                            <select id="cetak-kelas" class="form-control">
+                                <option value="">-- Pilih Kelas --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cetak-siswa">Pilih Siswa</label>
+                            <select id="cetak-siswa" class="form-control">
+                                <option value="">-- Pilih Siswa --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cetak-semester">Pilih Semester</label>
+                            <select id="cetak-semester" class="form-control">
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cetak-template">Template Rapor</label>
+                            <select id="cetak-template" class="form-control">
+                                <option value="sd">SD</option>
+                                <option value="smp">SMP</option>
+                                <option value="sma">SMA</option>
+                                <option value="smk">SMK</option>
+                                <option value="paketa">Paket A</option>
+                                <option value="paketb">Paket B</option>
+                                <option value="paketc">Paket C</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="cetak-preview-container" class="cetak-preview-container" style="display: none;">
+                        <div class="cetak-header">
+                            <h3>Preview Rapor</h3>
+                            <button id="cetak-pdf-btn" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Cetak PDF</button>
+                        </div>
+                        <div class="cetak-preview" id="cetak-preview">
+                            <!-- Preview will be generated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sinkronisasi Page -->
+                <div id="sinkronisasi-page" class="page">
+                    <div class="page-header">
+                        <h2>Sinkronisasi Data</h2>
+                    </div>
+                    <div class="sync-container">
+                        <div class="sync-card">
+                            <h3>Export Data</h3>
+                            <p>Export data lokal ke file JSON untuk diupload ke server</p>
+                            <button id="export-json-btn" class="btn btn-primary"><i class="fas fa-file-export"></i> Export JSON</button>
+                        </div>
+                        <div class="sync-card">
+                            <h3>Import Data</h3>
+                            <p>Import data dari server atau file JSON</p>
+                            <div class="import-options">
+                                <button id="import-file-btn" class="btn btn-info"><i class="fas fa-file-import"></i> Import dari File</button>
+                                <button id="import-server-btn" class="btn btn-success"><i class="fas fa-cloud-download-alt"></i> Import dari Server</button>
+                            </div>
+                        </div>
+                        <div class="sync-card">
+                            <h3>Status Sinkronisasi</h3>
+                            <div class="sync-status-info">
+                                <p><strong>Terkoneksi:</strong> <span id="sync-connected">Tidak</span></p>
+                                <p><strong>Terakhir Sinkron:</strong> <span id="sync-last-time">Belum pernah</span></p>
+                                <p><strong>Versi Database:</strong> <span id="sync-db-version">1.0</span></p>
+                            </div>
+                            <button id="check-sync-btn" class="btn btn-info"><i class="fas fa-sync"></i> Cek Koneksi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Modal Title</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button id="modal-cancel-btn" class="btn btn-secondary">Batal</button>
+                <button id="modal-save-btn" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input for backup/restore -->
+    <input type="file" id="file-input" style="display: none;" accept=".json">
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/pdf-generator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
