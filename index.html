@@ -622,5 +622,25 @@
     <script src="js/ui.js"></script>
     <script src="js/pdf-generator.js"></script>
     <script src="js/app.js"></script>
-</body>
+        <!-- Test Suite (Development only) -->
+        <script src="js/app-test.js"></script>
+    
+        <!-- Development tools -->
+        <script>
+            // Add development console to window for easy access
+            window.runTests = () => {
+                if (typeof AppTest !== 'undefined') {
+                    AppTest.run();
+                } else {
+                    console.error('AppTest not loaded');
+                }
+            };
+        
+            // Log helpful message
+            console.log('%c📊 Rapor Kurikulum Merdeka v1.2.0', 'color: blue; font-size: 16px; font-weight: bold;');
+            console.log('%cRun tests: runTests()', 'color: green; font-size: 12px;');
+            console.log('%cView database: DB', 'color: green; font-size: 12px;');
+            console.log('%cView utilities: Utils', 'color: green; font-size: 12px;');
+        </script>
+    </body>
 </html>
