@@ -1,0 +1,15 @@
+<!-- GitHub Pages Configuration -->
+<!-- This file enables GitHub Pages for the root directory -->
+
+This repository is configured to use GitHub Pages.
+
+Access the live application at:
+https://asepsupriatna90.github.io/rapor-kurikulum-merdeka
+
+To view this site:
+1. Go to repository Settings
+2. Scroll to "GitHub Pages" section  
+3. Set Source to: main branch / root (/)
+4. Wait 1-2 minutes for deployment
+
+The application will be live at the URL above.
