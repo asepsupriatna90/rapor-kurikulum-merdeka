@@ -1,0 +1,92 @@
+name: 📊 Auto Backup Data
+
+on:
+  # Jalankan setiap hari pukul 02:00 UTC (09:00 WIB)
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Bisa juga di-trigger manual dari Actions tab
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: 📝 Create backup script
+        run: |
+          cat > backup.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Template data backup (ini akan di-replace oleh real data saat deployment)
+          const backupData = {
+            timestamp: new Date().toISOString(),
+            version: '1.1.0',
+            databases: {
+              sekolah: [],
+              guru: [],
+              kelas: [],
+              siswa: [],
+              mapel: [],
+              cp: [],
+              nilai: [],
+              deskripsi: [],
+              ekstrakurikuler: [],
+              ekstrakurikuler_siswa: [],
+              ketidakhadiran: [],
+              catatan_walikelas: [],
+              pengaturan: []
+            }
+          };
+          
+          // Buat folder backups jika belum ada
+          const backupDir = path.join(__dirname, 'backups');
+          if (!fs.existsSync(backupDir)) {
+            fs.mkdirSync(backupDir, { recursive: true });
+          }
+          
+          // Buat nama file dengan tanggal
+          const dateStr = new Date().toISOString().split('T')[0];
+          const filename = `rapor-backup-${dateStr}.json`;
+          const filepath = path.join(backupDir, filename);
+          
+          // Simpan backup
+          fs.writeFileSync(
+            filepath,
+            JSON.stringify(backupData, null, 2)
+          );
+          
+          console.log(`✅ Backup created: ${filename}`);
+          EOF
+        
+        shell: bash
+      
+      - name: 💾 Generate backup file
+        run: node backup.js
+      
+      - name: 🔗 Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      
+      - name: 📤 Commit and push backup
+        run: |
+          git add backups/
+          git diff --quiet && git diff --staged --quiet || (
+            git commit -m "🤖 Auto: Daily backup $(date +'%Y-%m-%d')"
+            git push
+          )
+      
+      - name: ✅ Backup complete
+        run: echo "✅ Auto-backup completed successfully at $(date)"

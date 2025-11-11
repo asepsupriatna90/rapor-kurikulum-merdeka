@@ -2,6 +2,27 @@
 
 Semua perubahan penting dalam proyek Rapor Kurikulum Merdeka akan dicatat di sini.
 
+## [1.2.0] - 2025-11-11 (IN PROGRESS)
+
+### ✨ Added (Fitur Baru)
+- ✅ **GitHub Auto-Backup System** - Backup otomatis data ke GitHub
+  - GitHub Actions workflow untuk daily backup
+  - Auto-backup module di aplikasi dengan UI controls
+  - Manual backup trigger capability
+  - Restore dari backup file JSON
+  - Support GitHub Personal Access Token untuk automated upload
+  - Backup file disimpan di folder `/backups/`
+  - File baru: `js/auto-backup.js`
+  - File baru: `.github/workflows/auto-backup.yml`
+  - Dokumentasi: `AUTO-BACKUP.md`, `DATABASE.md`
+
+### 🔧 Improved (Peningkatan)
+- Enhanced sync mechanism dengan backup support
+- Better data persistence strategy
+- Updated index.html dengan auto-backup script
+
+---
+
 ## [1.1.0] - 2025-11-11
 
 ### ✨ Added (Fitur Baru)

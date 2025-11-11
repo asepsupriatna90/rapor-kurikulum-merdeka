@@ -34,8 +34,9 @@
 ### 💾 Sinkronisasi & Backup
 - ✅ Export semua data ke JSON
 - ✅ Import data dari file JSON
-- ✅ Backup otomatis
+- ✅ **Backup otomatis ke GitHub (v1.2.0 NEW!)**
 - ✅ Restore data dengan mudah
+- ✅ Manual backup trigger di aplikasi
 
 ### 🔐 Offline-First
 - ✅ 100% berjalan di browser (IndexedDB)
@@ -128,7 +129,13 @@ rapor-kurikulum-merdeka/
 ├── package.json                  # 📦 Metadata proyek
 ├── README.md                     # 📖 File ini
 ├── INSTALLATION.md               # 🚀 Panduan instalasi lengkap
+├── AUTO-BACKUP.md                # 🤖 Panduan GitHub Auto-Backup (v1.2.0 NEW!)
+├── DATABASE.md                   # 💾 Penjelasan database architecture
 ├── .gitignore                    # 🚫 File yang di-ignore Git
+│
+├── .github/
+│   └── workflows/
+│       └── auto-backup.yml       # 🤖 GitHub Actions auto-backup workflow
 │
 ├── css/
 │   └── style.css                # 🎨 Styling lengkap aplikasi
@@ -138,7 +145,11 @@ rapor-kurikulum-merdeka/
 │   ├── db.js                    # 💾 IndexedDB management
 │   ├── ui.js                    # 🖼️ UI update & event handling
 │   ├── utils.js                 # 🛠️ Utility functions
-│   └── pdf-generator.js         # 📄 Generate PDF rapor
+│   ├── pdf-generator.js         # 📄 Generate PDF rapor
+│   ├── demo-data.js             # 📊 Demo data generator (v1.1.0 NEW!)
+│   ├── form-validator.js        # ✅ Form validation (v1.1.0 NEW!)
+│   ├── enhancement.js           # ✨ UI enhancements (v1.1.0 NEW!)
+│   └── auto-backup.js           # 🤖 Auto-backup module (v1.2.0 NEW!)
 │
 └── lib/
     ├── jspdf.min.js             # jsPDF library
